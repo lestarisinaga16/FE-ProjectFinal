@@ -9,13 +9,22 @@ import BaseLayout from "./layouts/BaseLayout";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Post from "./pages/Post";
 import Register from "./pages/Register";
 import PrivateRoute from "./utils/PrivateRoute";
 import PublicRoute from "./utils/PublicRoute";
 import { AuthProvider } from "./utils/AuthProvider";
+import MenuList from "./components/MenuList";
+import CreateMenu from "./components/CreateMenu";
+import EditMenu from "./components/EditMenu";
+import KaryawanList from "./components/KaryawanList";
+import CreateKaryawan from "./components/CreateKaryawan";
+import EditKaryawan from "./components/EditKaryawan";
+import RempahList from "./components/RempahList";
+import CreateRempah from "./components/CreateRempah";
+import EditRempah from "./components/EditRempah";
 
 const queryClient = new QueryClient();
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -48,10 +57,74 @@ function App() {
             }
           />
           <Route
-            path="posts"
+            path="menu"
             element={
               <PrivateRoute>
-                <Post />
+                <MenuList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="menu/create"
+            element={
+              <PrivateRoute>
+                <CreateMenu />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="menu/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditMenu />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="karyawan"
+            element={
+              <PrivateRoute>
+                <KaryawanList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="karyawan/create"
+            element={
+              <PrivateRoute>
+                <CreateKaryawan />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="karyawan/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditKaryawan />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="rempah"
+            element={
+              <PrivateRoute>
+                <RempahList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="rempah/create"
+            element={
+              <PrivateRoute>
+                <CreateRempah />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="rempah/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditRempah />
               </PrivateRoute>
             }
           />
@@ -59,14 +132,13 @@ function App() {
       </Route>
     )
   );
+
   return (
-    <>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
     </AuthProvider>
-    </>
   );
 }
 
